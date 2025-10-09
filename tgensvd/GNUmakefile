@@ -4,15 +4,16 @@ endif # !COMPILER
 include ../$(COMPILER).mk
 MKFS=GNUmakefile ../$(COMPILER).mk
 
-LIBPVN=-L../../libpvn/src
+PVN=$(realpath ../../libpvn)
+LIBPVN=-L$(PVN)/src
 ifeq ($(ARCH),Darwin)
-LIBPVN += -Wl,-rpath,../../libpvn/src
+LIBPVN += -Wl,-rpath,$(PVN)/src
 else # !Darwin
-LIBPVN += -Wl,-rpath=../../libpvn/src
+LIBPVN += -Wl,-rpath=$(PVN)/src
 endif # ?Darwin
 LIBPVN += -lpvn
 ifneq ($(COMPILER),gnu)
-LIBPVN += -lquadmath -lgcc_s
+LIBPVN += -lquadmath -lgcc_s -ldl -lm
 endif # !gnu
 
 .PHONY: all help clean
