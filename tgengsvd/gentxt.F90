@@ -12,31 +12,31 @@ PROGRAM GENTXT
   CALL READCL(N, MIN_F, MAX_F, MIN_G, MAX_G, MIN_X, MAX_X, INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'invalid command line'
+     STOP 'invalid command line'
   END IF
-  IF (MIN_F .GT. MAX_F) ERROR STOP 'MIN_F > MAX_F'
-  IF (MIN_G .GT. MAX_G) ERROR STOP 'MIN_G > MAX_G'
-  IF (MIN_X .GT. MAX_X) ERROR STOP 'MIN_X > MAX_X'
+  IF (MIN_F .GT. MAX_F) STOP 'MIN_F > MAX_F'
+  IF (MIN_G .GT. MAX_G) STOP 'MIN_G > MAX_G'
+  IF (MIN_X .GT. MAX_X) STOP 'MIN_X > MAX_X'
 
   OPEN(UNIT=FU, FILE=FN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening F.txt'
+     STOP 'error opening F.txt'
   END IF
   OPEN(UNIT=GU, FILE=GN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening G.txt'
+     STOP 'error opening G.txt'
   END IF
   OPEN(UNIT=SU, FILE=SN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening S.txt'
+     STOP 'error opening S.txt'
   END IF
   OPEN(UNIT=XU, FILE=XN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening X.txt'
+     STOP 'error opening X.txt'
   END IF
 
   FV = REAL(MAX_F,16)
@@ -60,22 +60,22 @@ PROGRAM GENTXT
   CLOSE(UNIT=XU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing X.txt'
+     STOP 'error closing X.txt'
   END IF
   CLOSE(UNIT=SU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing S.txt'
+     STOP 'error closing S.txt'
   END IF
   CLOSE(UNIT=GU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing G.txt'
+     STOP 'error closing G.txt'
   END IF
   CLOSE(UNIT=FU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing F.txt'
+     STOP 'error closing F.txt'
   END IF
 
 1 FORMAT(ES25.17E3)

@@ -12,14 +12,14 @@ PROGRAM GENTXT
   CALL READCL(N, MIN_F, MAX_F, INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'invalid command line'
+     STOP 'invalid command line'
   END IF
-  IF (MIN_F .GT. MAX_F) ERROR STOP 'MIN_F > MAX_F'
+  IF (MIN_F .GT. MAX_F) STOP 'MIN_F > MAX_F'
 
   OPEN(UNIT=FU, FILE=FN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening F.txt'
+     STOP 'error opening F.txt'
   END IF
 
   FV = REAL(MAX_F,16)
@@ -37,7 +37,7 @@ PROGRAM GENTXT
   CLOSE(UNIT=FU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing F.txt'
+     STOP 'error closing F.txt'
   END IF
 
 1 FORMAT(ES25.17E3)

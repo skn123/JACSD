@@ -12,14 +12,14 @@ PROGRAM SGENTXT
   CALL READCL(N, MIN_F, MAX_F, INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'invalid command line'
+     STOP 'invalid command line'
   END IF
-  IF (MIN_F .GT. MAX_F) ERROR STOP 'MIN_F > MAX_F'
+  IF (MIN_F .GT. MAX_F) STOP 'MIN_F > MAX_F'
 
   OPEN(UNIT=FU, FILE=FN, IOSTAT=INFO, STATUS='REPLACE')
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error opening f.txt'
+     STOP 'error opening f.txt'
   END IF
 
   FV = REAL(MAX_F, REAL128)
@@ -33,7 +33,7 @@ PROGRAM SGENTXT
   CLOSE(UNIT=FU, IOSTAT=INFO)
   IF (INFO .NE. 0) THEN
      WRITE (ERROR_UNIT,*) INFO
-     ERROR STOP 'error closing f.txt'
+     STOP 'error closing f.txt'
   END IF
 
 1 FORMAT(ES16.9E2)

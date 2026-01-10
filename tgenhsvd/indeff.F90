@@ -364,7 +364,7 @@ CONTAINS
        IF (JVEC(I) .EQ. 1) NPLUS = NPLUS + 1
        IF (IPIV(I) .LT. 0) N2PIV = N2PIV + 1
     END DO
-    IF (MOD(N2PIV,2) .NE. 0) ERROR STOP 'QSYBPC: IPIV with an odd number of -1s'
+    IF (MOD(N2PIV,2) .NE. 0) STOP 'QSYBPC: IPIV with an odd number of -1s'
     N2PIV = N2PIV / 2
 
     K = NRANK
@@ -860,7 +860,7 @@ CONTAINS
              A(K,K) = CMPLX(SQRT(-R1), Q_ZERO, WP)
              R2 = -SQRT(-R2)
           ELSE ! should never happen
-             ERROR STOP 'XHEJF2: R1 = 0'
+             STOP 'XHEJF2: R1 = 0'
           END IF
 
           IF (K .LT. N) CALL XQSCAL(N-K, R2, A(K+1,K), 1)
@@ -948,7 +948,7 @@ CONTAINS
              INFO = K
              RETURN
           END IF
-          IF (JVEC(K+1) .NE. -JVEC(K)) ERROR STOP 'XHEJF2: JVEC(K+1) <> -JVEC(K)'
+          IF (JVEC(K+1) .NE. -JVEC(K)) STOP 'XHEJF2: JVEC(K+1) <> -JVEC(K)'
 
           SAR1 = SQRT(ABS(R1))
           SAR2 = SQRT(ABS(R2))
@@ -965,7 +965,7 @@ CONTAINS
              UD12 = -CONJG(S) * SAR2
              UD22 = C * SAR2
              CALL XROTM(SIDE, (N-K)-1, A(K+2,K), 1, A(K+2,K+1), 1, UD11, UD21, UD12, UD22, I)
-             IF (I .LT. 0) ERROR STOP 'XHEJF2: XROTM'
+             IF (I .LT. 0) STOP 'XHEJF2: XROTM'
              TEMP = -REAL(JVEC(K), WP)
              CALL XHER(UPLO, (N-K)-1, TEMP, A(K+2,K), 1, A(K+2,K+2), LDA)
              TEMP = -REAL(JVEC(K+1), WP)
@@ -1070,7 +1070,7 @@ CONTAINS
        IF (JVEC(I) .EQ. 1) NPLUS = NPLUS + 1
        IF (IPIV(I) .LT. 0) N2PIV = N2PIV + 1
     END DO
-    IF (MOD(N2PIV,2) .NE. 0) ERROR STOP 'XHEBPC: IPIV with an odd number of -1s'
+    IF (MOD(N2PIV,2) .NE. 0) STOP 'XHEBPC: IPIV with an odd number of -1s'
     N2PIV = N2PIV / 2
 
     K = NRANK
