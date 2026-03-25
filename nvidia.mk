@@ -17,7 +17,7 @@ ARFLAGS=rsv
 ifndef MARCH
 MARCH=native
 endif # !MARCH
-CPUFLAGS=-DUSE_NVIDIA -DUSE_X64 -DQX_WP=$(WP) -m64 -mp -KPIC -Mframe -Meh_frame -Minfo -tp=$(MARCH) -nvmalloc -traceback
+CPUFLAGS=-DUSE_NVIDIA -DUSE_X64 -DQX_WP=$(WP) -m64 -mp -fpic -Mframe -Meh_frame -Minfo -tp=$(MARCH) -nvmalloc -traceback
 ifeq ($(ABI),lp64)
 CPUFLAGS += -DVN_INTEGER_KIND=4
 endif # lp64
